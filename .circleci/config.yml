@@ -46,7 +46,7 @@ jobs:
           paths:
             - "/caches"
 
-  push_container:
+  push:
     <<: *container_config
     steps:
       - checkout
@@ -72,15 +72,6 @@ workflows:
   build_and_push:
     jobs:
       - build
-      # - build_container:
-      #     filters:
-      #       tags:
-      #         only: /^v[0-9]+(\.[0-9]+)*(-.*)*/ 
-      # - push_container:
-      #     requires:
-      #       - build_container
-      #     filters:
-      #       tags:
-      #         only: /^v[0-9]+(\.[0-9]+)*(-.*)*/
-      #       branches:
-              # ignore: /.*/
+      - push:
+          requires:
+            - build
