@@ -71,15 +71,16 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build_container:
-          filters:
-            tags:
-              only: /^v[0-9]+(\.[0-9]+)*(-.*)*/ 
-      - push_container:
-          requires:
-            - build_container
-          filters:
-            tags:
-              only: /^v[0-9]+(\.[0-9]+)*(-.*)*/
-            branches:
+      - build_container
+      # - build_container:
+      #     filters:
+      #       tags:
+      #         only: /^v[0-9]+(\.[0-9]+)*(-.*)*/ 
+      # - push_container:
+      #     requires:
+      #       - build_container
+      #     filters:
+      #       tags:
+      #         only: /^v[0-9]+(\.[0-9]+)*(-.*)*/
+      #       branches:
               ignore: /.*/
